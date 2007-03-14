@@ -1,0 +1,10 @@
+Revision history for Perl extension Tie::FlatFile::Array.
+
+0.02  Sun Mar 11 04:09:34 CDT 2007
+	- changed module name to Tie::FlatFile::Array
+	  at the request of Adam Kennedy.
+
+0.01  Sat Mar  3 13:09:31 2007
+	- original version; created by h2xs 1.23 with options
+		-AX -n Tie::Flatfile::Array
+
