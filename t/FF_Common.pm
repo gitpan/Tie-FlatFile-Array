@@ -23,7 +23,7 @@ sub init {
 		$DEBUG = 1;
 	}
 
-	my $tmpnam = $DEBUG ? '/tmp/tfa.test.dir' : tmpnam();
+	my $tmpnam = $DEBUG ? '/tmp/tfa-test.dir' : tmpnam();
 	%Common = (
 		tempdir => $tmpnam,
 		tempin => catfile($tmpnam,'input'),
@@ -59,11 +59,10 @@ sub slurp_file {
 
 sub unslurp_file {
 	my $filename = shift;
-	my $data = join('',@_);
 	my $fh;
 
 	open $fh, '>:raw', $filename;
-	print $fh $data;
+	print $fh @_;
 	close $fh;
 	1;
 }

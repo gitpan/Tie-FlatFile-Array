@@ -1,5 +1,10 @@
 Revision history for Perl extension Tie::FlatFile::Array.
 
+0.03  Thu Mar 15 13:20:00 CDT 2007
+	- minor improvements to the tests
+	- Added dependency information into Makefile.PL. This module
+	depends upon Class::Accessor.
+
 0.02  Sun Mar 11 04:09:34 CDT 2007
 	- changed module name to Tie::FlatFile::Array
 	  at the request of Adam Kennedy.
