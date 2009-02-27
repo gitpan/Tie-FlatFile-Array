@@ -1,5 +1,11 @@
 Revision history for Perl extension Tie::FlatFile::Array.
 
+0.05  Fri Feb 27 14:10:17 CST 2009
+	- (Proposed changes are below.)
+	- Allow FETCH to return undef upon out-of-bounds
+	- Test for undef when out-of-bounds happens
+	- Change Array.pod to record the change (undef)
+
 0.04  Fri Feb 27 00:09:58 CST 2009
 	- author email address change
 	- Allow croak to deliver messages that refer to the

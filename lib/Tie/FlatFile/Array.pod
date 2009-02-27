@@ -80,7 +80,7 @@ code should display the file's contents:
     untie @flat;
 
 Note that fetching beyond the bounds of the array results
-in an error who's message is produced by "croak()."
+in C<undef>.
 
 =head1 SEE ALSO
 

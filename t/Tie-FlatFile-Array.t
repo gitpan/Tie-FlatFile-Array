@@ -123,13 +123,20 @@ ok(diff(testfile(7),testfile(8)),'compare using unshift to using map');
 ok((@search + @moresearch) == $unshift, 'unshift return value');
 
 # Test that going out of bounds produces an error.
-my ($dummy, $evalerr);
+# my ($dummy, $evalerr);
+# tie @array, 'Tie::FlatFile::Array', testfile('8'),
+# 	O_RDWR | O_CREAT, 0644, { packformat => $pkfmt };
+# eval { $dummy = $array[14] };
+# $evalerr = $@;
+# untie @array;
+# ok($evalerr =~ /^\Qindex (14) out of bounds/,'going out of bounds produces an error');
+
+# Test that going out of bounds produces "undef".
 tie @array, 'Tie::FlatFile::Array', testfile('8'),
 	O_RDWR | O_CREAT, 0644, { packformat => $pkfmt };
-eval { $dummy = $array[14] };
-$evalerr = $@;
+$data = $array[14];
+ok(!defined($data),'going out of bounds produces "undef"');
 untie @array;
-ok($evalerr =~ /^\Qindex (14) out of bounds/,'going out of bounds produces an error');
 
 t::FF_Common::cleanup;
 

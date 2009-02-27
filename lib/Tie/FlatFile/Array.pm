@@ -14,8 +14,8 @@ use File::Spec::Functions qw(catfile splitpath);
 my @fields;
 
 BEGIN {
-	our $VERSION = 0.04;
-	$VERSION = eval "$VERSION";
+	our $VERSION = 0.04_01;
+	$VERSION = eval $VERSION;
 	@fields = qw(filename flags mode packformat handle
 	reclen nulls nulla);
 	__PACKAGE__->mk_accessors(@fields);
@@ -70,6 +70,8 @@ sub UNTIE {
 
 sub FETCH {
 	my ($self, $index) = @_;
+	return undef if $index < 0;
+
 	my $len = $self->reclen;
 	my $fh = $self->fh;
 	local $Carp::CarpLevel = 1;	# Set the stack frame for croak().
@@ -77,9 +79,9 @@ sub FETCH {
 	local $RS = \$len;		# Set the record length.
 	seek($fh, $index * $len, SEEK_SET);
 	my $data = <$fh>;  # Get a record.
-	# croak("Index $index: Invalid access of $fh") unless $data;
-	croak("error on $fh: $!") if (!$data && $!);
-	croak("index ($index) out of bounds") unless $data;
+	# croak("error on $fh: $!") if (!$data && $!);
+	# croak("index ($index) out of bounds") unless $data;
+	return undef unless $data;
 
 	# Unpack and return the data as an array reference.
 	[ unpack $self->packformat, $data ];
