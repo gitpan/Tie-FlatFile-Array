@@ -1,4 +1,4 @@
-Tie-FlatFile-Array version 0.03
+Tie-FlatFile-Array version 0.04
 ===============================
 
 Tie::FlatFile::Array allows the programmer to treat a
@@ -39,7 +39,7 @@ DEPENDENCIES
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2007 by Mumia Wotse
+Copyright (C) 2007 by Mumia Wotse <mumia.w.18.spam+nospam [at] earthlink.net>
 
 This library is under the GPL.
 

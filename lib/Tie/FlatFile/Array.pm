@@ -14,13 +14,13 @@ use File::Spec::Functions qw(catfile splitpath);
 my @fields;
 
 BEGIN {
-	our $VERSION = 0.03;
+	our $VERSION = 0.04;
 	$VERSION = eval "$VERSION";
 	@fields = qw(filename flags mode packformat handle
 	reclen nulls nulla);
 	__PACKAGE__->mk_accessors(@fields);
 	*fh = \&handle;
-	require Tie::FlatFile::ArrayHelper;
+	# require Tie::FlatFile::ArrayHelper;
 }
 
 sub TIEARRAY {
@@ -29,6 +29,7 @@ sub TIEARRAY {
 	# my ($filename, $flags, $mode, $packformat) = @_;
 	my ($filename, $flags, $mode, $opts) = @_;
 	my ($packformat);
+	local $Carp::CarpLevel = 1;	# Set the stack frame for croak().
 
 	if ('HASH' ne ref($opts)) {
 		croak('Options hash missing');
@@ -71,11 +72,14 @@ sub FETCH {
 	my ($self, $index) = @_;
 	my $len = $self->reclen;
 	my $fh = $self->fh;
+	local $Carp::CarpLevel = 1;	# Set the stack frame for croak().
 
 	local $RS = \$len;		# Set the record length.
 	seek($fh, $index * $len, SEEK_SET);
 	my $data = <$fh>;  # Get a record.
-	croak("Index $index: Invalid access of $fh") unless $data;
+	# croak("Index $index: Invalid access of $fh") unless $data;
+	croak("error on $fh: $!") if (!$data && $!);
+	croak("index ($index) out of bounds") unless $data;
 
 	# Unpack and return the data as an array reference.
 	[ unpack $self->packformat, $data ];
@@ -175,6 +179,21 @@ sub UNSHIFT {
 	$self->FETCHSIZE;
 }
 
+# The following sub, if called from FETCH, would
+# likely demand too much disk activity.
+#
+# sub check_bound {
+# 	my ($self, $index, $doabort) = @_;
+# 	local $Carp::CarpLevel = 1;
+# 	if ($index >= 0 && $index < $self->FETCHSIZE) {
+# 		return 1;
+# 	} else {
+# 		if ($doabort) {
+# 			croak("$index: index out of bounds");
+# 		}
+# 		return undef;
+# 	}
+# }
 
 
 1;

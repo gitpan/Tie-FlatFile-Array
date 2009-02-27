@@ -8,5 +8,5 @@ WriteMakefile(
     PREREQ_PM         => {Class::Accessor => 0.19}, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Tie/FlatFile/Array.pod', # retrieve abstract from module
-       AUTHOR         => 'Mumia Wotse <paduille.4060.mumia.w+nospam@earthlink.net>') : ()),
+       AUTHOR         => 'Mumia Wotse <paduille.4060.mumia.w@earthlink.net>') : ()),
 );

@@ -1,5 +1,15 @@
 Revision history for Perl extension Tie::FlatFile::Array.
 
+0.04  Fri Feb 27 00:09:58 CST 2009
+	- author email address change
+	- Allow croak to deliver messages that refer to the
+	correct caller's stack frame
+	- Test that out-of-bounds requests result in aborts
+	- Note in the docs that going out-of-bounds is an error
+	- FF_Common.pm: let the programmer know where
+	  /tmp/tfa-test.dir comes from
+
+
 0.03  Thu Mar 15 13:20:00 CDT 2007
 	- minor improvements to the tests
 	- Added dependency information into Makefile.PL. This module

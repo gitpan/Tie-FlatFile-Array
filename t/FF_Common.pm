@@ -32,6 +32,7 @@ sub init {
 
 	return if (-d $Common{tempdir});
 	mkdir $Common{tempdir};
+	unslurp_file(catfile($Common{tempdir},'t.test.Tie-FlatFile-Array'), '');
 }
 
 

@@ -79,16 +79,17 @@ code should display the file's contents:
 
     untie @flat;
 
-
-
+Note that fetching beyond the bounds of the array results
+in an error who's message is produced by "croak()."
 
 =head1 SEE ALSO
 
-See perltie, "perldoc -f pack" and possibly Tie::Array.
+See perltie, "perldoc -f pack" and possibly Tie::Array and
+Carp.
 
 =head1 AUTHOR
 
-  Copywright 2007 Mumia Wotse
+  Copywright 2007-2009 Mumia Wotse
   Mumia Wotse <mumia.w.18.spam+nospam [at] earthlink.net>
 
 This program is under the General Public License (GPL).
