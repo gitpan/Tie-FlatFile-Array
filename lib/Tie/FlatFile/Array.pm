@@ -14,7 +14,7 @@ use File::Spec::Functions qw(catfile splitpath);
 my @fields;
 
 BEGIN {
-	our $VERSION = 0.04_01;
+	our $VERSION = 0.05;
 	$VERSION = eval $VERSION;
 	@fields = qw(filename flags mode packformat handle
 	reclen nulls nulla);
@@ -26,7 +26,6 @@ BEGIN {
 sub TIEARRAY {
 	my $class = shift;
 	my $self = bless({}, $class);
-	# my ($filename, $flags, $mode, $packformat) = @_;
 	my ($filename, $flags, $mode, $opts) = @_;
 	my ($packformat);
 	local $Carp::CarpLevel = 1;	# Set the stack frame for croak().
@@ -79,8 +78,6 @@ sub FETCH {
 	local $RS = \$len;		# Set the record length.
 	seek($fh, $index * $len, SEEK_SET);
 	my $data = <$fh>;  # Get a record.
-	# croak("error on $fh: $!") if (!$data && $!);
-	# croak("index ($index) out of bounds") unless $data;
 	return undef unless $data;
 
 	# Unpack and return the data as an array reference.
@@ -180,22 +177,6 @@ sub UNSHIFT {
 	}
 	$self->FETCHSIZE;
 }
-
-# The following sub, if called from FETCH, would
-# likely demand too much disk activity.
-#
-# sub check_bound {
-# 	my ($self, $index, $doabort) = @_;
-# 	local $Carp::CarpLevel = 1;
-# 	if ($index >= 0 && $index < $self->FETCHSIZE) {
-# 		return 1;
-# 	} else {
-# 		if ($doabort) {
-# 			croak("$index: index out of bounds");
-# 		}
-# 		return undef;
-# 	}
-# }
 
 
 1;
