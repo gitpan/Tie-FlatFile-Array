@@ -1,5 +1,8 @@
 Revision history for Perl extension Tie::FlatFile::Array.
 
+0.06  Fri Mar 13 00:08:33 CDT 2009
+    - move t/FF_Common to lib/Tie/FlatFile/TestHelper.pm (prospective)
+
 0.05  Fri Mar  6 23:10:26 CST 2009
 	- Allow FETCH to return undef upon out-of-bounds
 	- Add test: undef when out-of-bounds happens

@@ -3,8 +3,8 @@ Makefile.PL
 MANIFEST
 README
 t/Tie-FlatFile-Array.t
-t/FF_Common.pm
 lib/Tie/FlatFile/Array.pm
 lib/Tie/FlatFile/Array.pod
 lib/Tie/FlatFile/ArrayHelper.pm
+lib/Tie/FlatFile/TestHelper.pm
 META.yml                                 Module meta-data (added by MakeMaker)

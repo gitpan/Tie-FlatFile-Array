@@ -14,7 +14,7 @@ use File::Spec::Functions qw(catfile splitpath);
 my @fields;
 
 BEGIN {
-	our $VERSION = 0.05;
+	our $VERSION = "0.05_01";
 	$VERSION = eval $VERSION;
 	@fields = qw(filename flags mode packformat handle
 	reclen nulls nulla);

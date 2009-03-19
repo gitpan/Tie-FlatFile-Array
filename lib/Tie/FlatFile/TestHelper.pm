@@ -1,4 +1,5 @@
-package t::FF_Common;
+# package t::FF_Common;
+package Tie::FlatFile::TestHelper;
 use strict;
 use warnings;
 use POSIX qw(tmpnam);
@@ -9,7 +10,7 @@ use Fatal qw(open close);
 BEGIN {
 	our @ISA = qw(Exporter);
 	our @EXPORT = qw(%Common slurp_file unslurp_file testfile
-	diff copy_binary);
+	diff copy_binary ff_init ff_cleanup);
 	our @EXPORT_OK = @EXPORT;
 }
 
@@ -18,7 +19,7 @@ our $DEBUG;
 our %Common;
 
 
-sub init {
+sub ff_init {
 	if ("@_" =~ /\bdebug\b/) {
 		$DEBUG = 1;
 	}
@@ -37,7 +38,7 @@ sub init {
 
 
 
-sub cleanup {
+sub ff_cleanup {
 	return if $DEBUG;
 
 	unlink $Common{tempin};
